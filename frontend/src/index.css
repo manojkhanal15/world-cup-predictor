@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────────── */
+
+:root {
+  --color-fifa-blue: #005faa;
+  --color-gold: #f5c518;
+  --color-navy: #0f1729;
+
+  /* Light mode */
+  --color-background: #f0f4f8;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+}
+
+[data-theme='dark'] {
+  --color-background: #080e1a;
+  --color-surface: #111827;
+  --color-surface-hover: #1e293b;
+  --color-border: #1e293b;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #475569;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ─── Focus ring ─────────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--color-fifa-blue);
+  outline-offset: 2px;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────────── */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-surface-hover) 50%,
+    var(--color-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ─── Print styles ───────────────────────────────────────────────────────────── */
+
+@media print {
+  nav, button, .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+}
